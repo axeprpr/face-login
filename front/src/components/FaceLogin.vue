@@ -102,7 +102,9 @@ export default {
     },
 
     retry() {
-      this.initTracker();
+      this.captures = [];
+      // this.initTracker();
+      location.reload();
     },
 
     cancel() {
