@@ -4,7 +4,6 @@
       <span class="loading">正在加载摄像头，请稍等</span>
       <video id="video" class="video" width="320" height="240" preload autoplay loop muted></video>
       <canvas id="canvas" class="video" width="320" height="240"></canvas>
-      <canvas id="canvas" class="video" width="320" height="240"></canvas>
     </div>
     <div>
         <a href='javascript:;' class='cancel-btn' @click='retry'>重试</a>
@@ -42,11 +41,9 @@ export default {
         _this.onTracked(event);
       });
 
-      // 如果是读取视频，可以用trackerTask.stop trackerTask.run来暂停、开始视频
-      this.trackerTask = tracking.track(this.video, this.tracker);
-
       // 启用摄像头
-      tracking.track(this.video, this.tracker, { camera: true });
+      // 如果是读取视频，可以用trackerTask.stop trackerTask.run来暂停、开始视频
+      this.trackerTask = tracking.track(this.video, this.tracker, { camera: true });
     },
 
     onTracked(event) {
@@ -115,13 +112,13 @@ export default {
 
   data() {
     return {
-      tracker: Object,
-      trackerTask: Object,
-      video: Object,
-      canvas: Object,
-      context: Object,
-      captures: [],
-      message: String
+      tracker: Object, //人脸追踪器
+      trackerTask: Object, // 用于控制食品和画布的工具
+      video: Object, // 页面视频元素
+      canvas: Object, // 页面画布元素
+      context: Object, // 画布内容
+      captures: [], // 截图列表
+      message: String 
     };
   },
 
